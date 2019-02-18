@@ -11,4 +11,4 @@
 - ReplaceAll
 - Split
 
-输入参数可以是 string/\[\]byte
+输入参数可以是  string / \[\]byte / io.Reader
