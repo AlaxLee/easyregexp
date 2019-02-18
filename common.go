@@ -50,6 +50,18 @@ func NewEasyRegexp(pattern string) *EasyRegexp {
 	return er
 }
 
+func Match(pattern string, i interface{}) bool {
+	return NewEasyRegexp(pattern).Match(i)
+}
+
+func (er *EasyRegexp) Match(i interface{}) bool {
+	er.count++
+
+	s := toString(i)
+
+	return er.r.MatchString(s)
+}
+
 func Catch(pattern string, i interface{}) []string {
 	return NewEasyRegexp(pattern).Catch(i)
 }
@@ -105,6 +117,18 @@ func (er *EasyRegexp) ReplaceAll(i interface{}, repl string) string {
 	s := toString(i)
 
 	return er.r.ReplaceAllString(s, repl)
+}
+
+func Split(pattern string, i interface{}) []string {
+	return NewEasyRegexp(pattern).Split(i)
+}
+
+func (er *EasyRegexp) Split(i interface{}) []string {
+	er.count++
+
+	s := toString(i)
+
+	return er.r.Split(s, -1)
 }
 
 func toString(i interface{}) string {
